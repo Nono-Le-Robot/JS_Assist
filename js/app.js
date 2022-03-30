@@ -1,7 +1,9 @@
 //============================= Imports ==========================
 import {ouvrirFenetreMusique, fermerFenetreOuverteMusique, ouvrirFenetreRadio, fermerFenetreOuverteRadio} from './functions.js'
 //============================= Query Selectors ==========================
-const btnEcouteSelector = document.querySelector("#btn-ecoute")
+const micDesignSelector = document.querySelector("#mic-design")
+const HelpShowSelector = document.querySelector('#help-show')
+const helpDesignSelector = document.querySelector('#help-design')
 //============================= Speech Recognition ==========================
 var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
 var recognition = new SpeechRecognition();
@@ -13,15 +15,24 @@ recognition.interimResults = true;
 vocalReturn.pitch = 1;
 let texte = ""
 let running = 0;
-var audio = new Audio('../song/bip.wav');
-audio.play();
 //============================= Add Event Listeners ==========================
-    btnEcouteSelector.addEventListener ("click",() => {
+
+helpDesignSelector.addEventListener ("click", ()=>{
+
+    HelpShowSelector.classList.toggle('help-in');
+
+
+})
+
+micDesignSelector.addEventListener ("click",() => {
         if(running === 0 ){
-        btnEcouteSelector.textContent = "Ecoute en cours ... "
         recognition.start();
         running = 1
+        micDesignSelector.classList.add('anim-mic');
+
     }
+    
+
 })
 
 recognition.addEventListener('result', (userSpeech) => {
