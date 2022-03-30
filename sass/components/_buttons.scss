@@ -17,23 +17,6 @@
     animation: anim-btn 4s infinite ease-in-out;
 }
 
-@keyframes anim-btn {
-    0%{
-        box-shadow: 3px 3px 12px rgb(0, 0, 0);
-        transform: scale(1);
-        background-color: lighten($color: $dark-color, $amount: 0);
-    }
-    50%{
-        box-shadow: 5px 5px 12px rgb(0, 0, 0);
-        transform: scale(1.005);
-        background-color: lighten($color: $dark-color, $amount: 3);
-    }
-    100%{
-        box-shadow: 3px 3px 12px rgb(0, 0, 0);
-        transform: scale(1);
-        background-color: lighten($color: $dark-color, $amount: 0);
-    }
-}
 
 #ecoute{
     width: 100%;
@@ -68,27 +51,26 @@
 
 @keyframes mic-on {
 0%{
-    box-shadow: 0px 0px 30px rgb(231, 177, 177) ;
     transform: rotate(0deg);
 }
 
 25%{
-    box-shadow: 0px 0px 40px  rgb(251, 207, 125) ; 
-     transform: rotate(-3deg);
+
+     transform: rotate(-5deg);
 }
 
 50%{
-    box-shadow: 0px 0px 20px rgb(180, 241, 180) ;
+
      transform: rotate(0deg);
 }
 
 75%{
-    box-shadow: 0px 0px 50px rgb(136, 136, 231) ;
-     transform: rotate(5deg);
+
+     transform: rotate(8deg);
 }
 
 100%{
-    box-shadow: 0px 0px 30px rgb(231, 177, 177) ;
+
     transform: rotate(0deg);
 }
 
