@@ -36,6 +36,8 @@ micDesignSelector.addEventListener ("click",() => {
         running = 1
         
     }
+    recognition.stop
+    running = 0
     
     micDesignSelector.classList.toggle('anim-mic');
 
@@ -59,6 +61,34 @@ recognition.addEventListener ('end', ()=>{
         speechSynthesis.speak(vocalReturn)
         texte = ""
     }
+    //============================= Recherche Youtube ==========================
+    else if(texte.includes(assistName) && texte.includes("cherche") && texte.includes("sur youtube")){
+        let response = "c'est fait"
+        let newTexte = texte.replace("auto cherche","");
+        let finalResult = newTexte.replace("sur youtube","");
+        let input = finalResult.split("")
+        input.pop();
+        input = input.join("").split(" ").join("+");
+        window.open(`https://www.youtube.com/results?search_query=${input}`)
+        vocalReturn.text = response
+        speechSynthesis.speak(vocalReturn)
+        texte = ""
+    }
+    
+    else if(texte.includes(assistName) && texte.includes("cherche") && texte.includes("sur google")){
+        let response = "c'est fait"
+        let newTexte = texte.replace("auto cherche","");
+        let finalResult = newTexte.replace("sur google","");
+        let input = finalResult.split("")
+        input.pop();
+        input = input.join("").split(" ").join("+");
+        window.open(`https://www.google.fr/search?q=${input}`)
+        vocalReturn.text = response
+        speechSynthesis.speak(vocalReturn)
+        texte = ""
+    }
+
+    
     //============================= Playlist ==========================
     else if(texte.includes(assistName) && texte.includes("playlist") && texte.includes("mets")){
         let response = "Je mets une playlist"
@@ -105,6 +135,21 @@ recognition.addEventListener ('end', ()=>{
         speechSynthesis.speak(vocalReturn)
         texte = ""
     }
+    else if(texte != ""){
+        let response = "Je n'ai pas compris"
+        vocalReturn.text = response
+        speechSynthesis.speak(vocalReturn)
+        texte = ""
+    }
+    else if(texte === "stop"){
+        let response = "Au revoir"
+        vocalReturn.text = response
+        speechSynthesis.speak(vocalReturn)
+        recognition.stop();
+        texte = ""
+    }
 //============================= Relance de l'écoute ==========================
-    recognition.start();
+recognition.stop
+micDesignSelector.classList.toggle('anim-mic');
+texte = ""
 }); 
