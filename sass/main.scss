@@ -24,29 +24,34 @@
 
     font-size: 15px;
     font-weight: 800;
+    transition: 5s linear ;
     
 
 }
 .help-in{
-    animation: help-in 2s forwards cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    animation: help-in 1s forwards;
+}
+.help-out{
+    animation: help-out  1s forwards;
 }
 
 @keyframes help-in {
     0%{
         transform: translateY(0);
     }
-    25%{
-        transform: translateY(-100px);
+
+    100%{
+        transform: translateY(-80px);
     }
-    50%{
-        transform: translateY(-50px);
-    }
-    75%{
+}
+
+@keyframes help-out {
+    0%{
         transform: translateY(-80px);
     }
 
     100%{
-        transform: translateY(-80px);
+        transform: translateY(60px);
     }
 }
 

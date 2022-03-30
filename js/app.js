@@ -18,9 +18,15 @@ let running = 0;
 //============================= Add Event Listeners ==========================
 
 helpDesignSelector.addEventListener ("click", ()=>{
-
-    HelpShowSelector.classList.toggle('help-in');
-
+    if(HelpShowSelector.classList.contains("help-in") == true){
+        HelpShowSelector.classList.remove('help-in');
+        HelpShowSelector.classList.add('help-out');
+    }
+    else{
+        HelpShowSelector.classList.add('help-in');
+        HelpShowSelector.classList.remove('help-out');
+    }
+    
 
 })
 
@@ -28,10 +34,10 @@ micDesignSelector.addEventListener ("click",() => {
         if(running === 0 ){
         recognition.start();
         running = 1
-        micDesignSelector.classList.add('anim-mic');
-
+        
     }
     
+    micDesignSelector.classList.toggle('anim-mic');
 
 })
 
