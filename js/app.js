@@ -174,7 +174,7 @@ recognition.onresult = function (event){
         readOut("le bitcoin est actuellement a 47159")
         transcript = ""
     }
-    else{
+    if(transcript != ""){
         readOut("Je n'ai pas compris")
     }
 
