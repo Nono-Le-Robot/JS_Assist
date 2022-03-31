@@ -1,5 +1,6 @@
 import {radioList, playlistSong} from './links.js'
 let openTab
+let randomId
 //============================= Query Selectors ==========================
 const btnOnSelector = document.querySelector("#on")
 const btnOffSelector = document.querySelector("#off")
@@ -48,7 +49,6 @@ function readOut(message){
     speech.volume = 0.5
     window.speechSynthesis.speak(speech)
 }
-
 recognition.onresult = function (event){
     let current = event.resultIndex
     let transcript = event.results[current][0].transcript
@@ -93,13 +93,22 @@ recognition.onresult = function (event){
     }
     //============================= Radio ==========================
     if(transcript.includes("radio") && transcript.includes("mets")){
-        openTab = window.open(radioList[Math.floor(Math.random()*radioList.length)]);
+        randomId = Math.floor(Math.random()*radioList.length)
+        openTab = window.open(radioList[randomId]);
         transcript = ""
         readOut("je mets une radio")
     }
     if(transcript.includes("change")  && transcript.includes("radio")){
+        let newRandomId = Math.floor(Math.random()*radioList.length)
+        if(randomId === newRandomId){
+            if(newRandomId === 0)
+            newRandomId ++
+            else{
+            newRandomId--
+            }
+        }
         openTab.close()
-        openTab = window.open(radioList[Math.floor(Math.random()*radioList.length)]);
+        openTab = window.open(radioList[newRandomId]);
         transcript = ""
         readOut("c'est fait")
     }
@@ -110,13 +119,23 @@ recognition.onresult = function (event){
     }
     //============================= Playlist ==========================
     if(transcript.includes("playlist") && transcript.includes("mets")){
-        openTab = window.open(playlistSong[Math.floor(Math.random()*playlistSong.length)]);
+        randomId = Math.floor(Math.random()*playlistSong.length)
+        openTab = window.open(playlistSong[randomId]);
         transcript = ""
         readOut("je mets une playlist")
     }
     if(transcript.includes("change")  && transcript.includes("playlist")){
+        let newRandomId = Math.floor(Math.random()*playlistSong.length)
+        if(randomId === newRandomId ){
+            if(newRandomId === 0){
+                newRandomId++
+            }
+            else{
+                newRandomId--
+            }
+        }
         openTab.close()
-        openTab = window.open(playlistSong[Math.floor(Math.random()*playlistSong.length)]);
+        openTab = window.open(playlistSong[newRandomId]);
         transcript = ""
         readOut("c'est fait")
     }
@@ -125,7 +144,6 @@ recognition.onresult = function (event){
         transcript = ""
         readOut("c'est fait")
     }
-
     //============================= Crypto ==========================
     if(transcript.includes("prix") && transcript.includes("bitcoin")){
         readOut("le bitcoin est actuellement a 47159")
