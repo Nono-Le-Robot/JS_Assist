@@ -37,16 +37,15 @@
 }
 
 .anim-mic{
-    background-color: rgb(162, 248, 162);
     animation: mic-on 5s infinite linear ;
     
 }
 
-.anim-mic-hold{
-    background-color: rgb(251, 197, 152);
-    animation: mic-on 5s infinite linear ;
-    
+.hide{
+    display: none;
+
 }
+
 
 
 

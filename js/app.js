@@ -12,11 +12,16 @@ const assistName = "auto"
 recognition.continuous = true;
 recognition.lang = 'fr-FR';
 //============================= addEventListener ==========================
+btnOffSelector.style.display = "none"
 btnOnSelector.addEventListener("click", () => {
     recognition.start()
+    btnOffSelector.style.display = "block"
+    btnOnSelector.style.display = "none"
 })
 btnOffSelector.addEventListener("click", () => {
     recognition.stop()
+    btnOnSelector.style.display = "block"
+    btnOffSelector.style.display = "none"
 })
 helpDesignSelector.addEventListener ("click", ()=>{
     if(HelpShowSelector.classList.contains("help-in") == true){
