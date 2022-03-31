@@ -55,21 +55,6 @@
     }
 }
 
-#mic-design{
-
-    font-size: 40px;
-    color: $dark-color;
-    padding: 20px 25px;
-    border: 2px black solid;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.287);
-    background-color: $alternative-color;
-    border-radius: 100%;
-    &:hover{
-        cursor: pointer;
-    }
-
-    
-}
 
 html,body{
     height: 100%;

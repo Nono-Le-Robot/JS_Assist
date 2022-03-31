@@ -1,22 +1,23 @@
-//============================= Imports ==========================
-import {ouvrirFenetreMusique, fermerFenetreOuverteMusique, ouvrirFenetreRadio, fermerFenetreOuverteRadio} from './functions.js'
+import {radioList, playlistSong} from './links.js'
+let openTab
 //============================= Query Selectors ==========================
-const micDesignSelector = document.querySelector("#mic-design")
+const btnOnSelector = document.querySelector("#on")
+const btnOffSelector = document.querySelector("#off")
 const HelpShowSelector = document.querySelector('#help-show')
 const helpDesignSelector = document.querySelector('#help-design')
 //============================= Speech Recognition ==========================
 var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
 var recognition = new SpeechRecognition();
-let vocalReturn = new SpeechSynthesisUtterance();
 const assistName = "auto"
-recognition.continuous = false;
+recognition.continuous = true;
 recognition.lang = 'fr-FR';
-recognition.interimResults = true;
-vocalReturn.pitch = 1;
-let texte = ""
-let running = 0;
-//============================= Add Event Listeners ==========================
-
+//============================= addEventListener ==========================
+btnOnSelector.addEventListener("click", () => {
+    recognition.start()
+})
+btnOffSelector.addEventListener("click", () => {
+    recognition.stop()
+})
 helpDesignSelector.addEventListener ("click", ()=>{
     if(HelpShowSelector.classList.contains("help-in") == true){
         HelpShowSelector.classList.remove('help-in');
@@ -26,130 +27,127 @@ helpDesignSelector.addEventListener ("click", ()=>{
         HelpShowSelector.classList.add('help-in');
         HelpShowSelector.classList.remove('help-out');
     }
-    
-
 })
+//============================= Functions ==========================
+recognition.onstart = function () {
+    console.log(`${assistName} : on`);
+}
+recognition.onend = function () {
+    console.log(`${assistName} : off`);
+}
+function readOut(message){
+    const speech = new SpeechSynthesisUtterance();
+    const allVoices = speechSynthesis.getVoices()
+    speech.text = message
+    speech.voice = allVoices[36]
+    speech.volume = 0.5
+    window.speechSynthesis.speak(speech)
+}
 
-micDesignSelector.addEventListener ("click",() => {
-        if(running === 0 ){
-        recognition.start();
-        running = 1
+recognition.onresult = function (event){
+    let current = event.resultIndex
+    let transcript = event.results[current][0].transcript
+    transcript = transcript.toLowerCase(); 
+    //============================= Ouvrir Google ==========================
+    if(transcript.includes("ouvre google")  ){
+        console.log(transcript)
+        window.open("http://google.com")
+        transcript = ""         
+        readOut("j'ouvre google")
         
     }
-    recognition.stop
-    running = 0
-    
-    micDesignSelector.classList.toggle('anim-mic');
-
-})
-
-recognition.addEventListener('result', (userSpeech) => {
-    let text = ""
-    let i = 0;
-    while(i < userSpeech.results.length){
-        text += userSpeech.results[i][0].transcript
-        i++
-        texte = text.toLowerCase();
-        console.log(texte);
+    //============================= Rechercher sur Google ==========================
+    if(transcript.includes("cherche") && transcript.includes("sur google")){
+        transcript = transcript.replace("cherche","");
+        transcript = transcript.replace("sur google","");
+        let input = transcript.split("")
+        input.pop();
+        input = input.join("").split(" ").join("+");
+        window.open(`https://www.google.com/search?q=${input}`)
+        transcript = ""  
+        readOut("voici les resultats")
     }
-})
-recognition.addEventListener ('end', ()=>{
-    //============================= Crypto ==========================
-    if(texte.includes(assistName) && texte.includes("bitcoin")){
-        let response = "prix BTC : 44200"
-        vocalReturn.text = response
-        speechSynthesis.speak(vocalReturn)
-        texte = ""
+    //============================= Ouvrir Youtube ==========================
+    if(transcript.includes("ouvre youtube")){
+        readOut("j'ouvre youtube")
+        console.log(transcript)
+        window.open("http://youtube.com")
+        transcript = ""         
+        readOut("j'ouvre Youtube")
     }
-    //============================= Recherche Youtube ==========================
-    else if(texte.includes(assistName) && texte.includes("cherche") && texte.includes("sur youtube")){
-        let response = "c'est fait"
-        let newTexte = texte.replace("auto cherche","");
-        let finalResult = newTexte.replace("sur youtube","");
-        let input = finalResult.split("")
+    //============================= Rechercher sur Youtube ==========================
+    if(transcript.includes("cherche") && transcript.includes("sur youtube")){
+        transcript = transcript.replace("cherche","");
+        transcript = transcript.replace("sur youtube","");
+        let input = transcript.split("")
         input.pop();
         input = input.join("").split(" ").join("+");
         window.open(`https://www.youtube.com/results?search_query=${input}`)
-        vocalReturn.text = response
-        speechSynthesis.speak(vocalReturn)
-        texte = ""
-    }
-    
-    else if(texte.includes(assistName) && texte.includes("cherche") && texte.includes("sur google")){
-        let response = "c'est fait"
-        let newTexte = texte.replace("auto cherche","");
-        let finalResult = newTexte.replace("sur google","");
-        let input = finalResult.split("")
-        input.pop();
-        input = input.join("").split(" ").join("+");
-        window.open(`https://www.google.fr/search?q=${input}`)
-        vocalReturn.text = response
-        speechSynthesis.speak(vocalReturn)
-        texte = ""
-    }
-
-    
-    //============================= Playlist ==========================
-    else if(texte.includes(assistName) && texte.includes("playlist") && texte.includes("mets")){
-        let response = "Je mets une playlist"
-        ouvrirFenetreMusique()
-        vocalReturn.text = response
-        speechSynthesis.speak(vocalReturn)
-        texte = ""
-    }
-    else if(texte.includes(assistName) && texte.includes("playlist") && texte.includes("change")){
-        let response = "Je change de playlist"
-        fermerFenetreOuverteMusique()
-        ouvrirFenetreMusique()
-        vocalReturn.text = response
-        speechSynthesis.speak(vocalReturn)
-        texte = ""
-    }
-    else if(texte.includes(assistName) && texte.includes("coupe")  && texte.includes("playlist")){
-        let response = "Je stop la playlist"
-        fermerFenetreOuverteMusique()
-        vocalReturn.text = response
-        speechSynthesis.speak(vocalReturn)
-        texte = ""
+        transcript = ""  
+        readOut("voici les resultats")
     }
     //============================= Radio ==========================
-    else if(texte.includes(assistName) && texte.includes("radio") && texte.includes("mets")){
-        let response = "Je mets une radio"
-        ouvrirFenetreRadio()
-        vocalReturn.text = response
-        speechSynthesis.speak(vocalReturn)
-        texte = ""
+    if(transcript.includes("radio") && transcript.includes("mets")){
+        openTab = window.open(radioList[Math.floor(Math.random()*radioList.length)]);
+        transcript = ""
+        readOut("je mets une radio")
     }
-    else if(texte.includes(assistName) && texte.includes("radio") && texte.includes("change")){
-        let response = "Je change de radio"
-        fermerFenetreOuverteRadio()
-        ouvrirFenetreRadio()
-        vocalReturn.text = response
-        speechSynthesis.speak(vocalReturn)
-        texte = ""
+    if(transcript.includes("change")  && transcript.includes("radio")){
+        openTab.close()
+        openTab = window.open(radioList[Math.floor(Math.random()*radioList.length)]);
+        transcript = ""
+        readOut("c'est fait")
     }
-    else if(texte.includes(assistName) && texte.includes("coupe")  && texte.includes("radio")){
-        let response = "Je stop la radio"
-        fermerFenetreOuverteRadio()
-        vocalReturn.text = response
-        speechSynthesis.speak(vocalReturn)
-        texte = ""
+    if(transcript.includes("coupe")  && transcript.includes("radio")){
+        openTab.close()
+        transcript = ""
+        readOut("c'est fait")
     }
-    else if(texte != ""){
-        let response = "Je n'ai pas compris"
-        vocalReturn.text = response
-        speechSynthesis.speak(vocalReturn)
-        texte = ""
+    //============================= Playlist ==========================
+    if(transcript.includes("playlist") && transcript.includes("mets")){
+        openTab = window.open(playlistSong[Math.floor(Math.random()*playlistSong.length)]);
+        transcript = ""
+        readOut("je mets une playlist")
     }
-    else if(texte === "stop"){
-        let response = "Au revoir"
-        vocalReturn.text = response
-        speechSynthesis.speak(vocalReturn)
-        recognition.stop();
-        texte = ""
+    if(transcript.includes("change")  && transcript.includes("playlist")){
+        openTab.close()
+        openTab = window.open(playlistSong[Math.floor(Math.random()*playlistSong.length)]);
+        transcript = ""
+        readOut("c'est fait")
     }
-//============================= Relance de l'écoute ==========================
-recognition.stop
-micDesignSelector.classList.toggle('anim-mic');
-texte = ""
-}); 
+    if(transcript.includes("coupe")  && transcript.includes("playlist")){
+        openTab.close()
+        transcript = ""
+        readOut("c'est fait")
+    }
+
+    //============================= Crypto ==========================
+    if(transcript.includes("prix") && transcript.includes("bitcoin")){
+        readOut("le bitcoin est actuellement a 47159")
+        transcript = ""
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
