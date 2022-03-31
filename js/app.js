@@ -101,8 +101,8 @@ recognition.onresult = function (event){
     if(transcript.includes("change")  && transcript.includes("radio")){
         let newRandomId = Math.floor(Math.random()*radioList.length)
         if(randomId === newRandomId){
-            if(newRandomId === 0)
-            newRandomId ++
+            if(newRandomId === 0){
+            }
             else{
             newRandomId--
             }
@@ -128,7 +128,6 @@ recognition.onresult = function (event){
         let newRandomId = Math.floor(Math.random()*playlistSong.length)
         if(randomId === newRandomId ){
             if(newRandomId === 0){
-                newRandomId++
             }
             else{
                 newRandomId--
