@@ -10,7 +10,7 @@ const helpDesignSelector = document.querySelector('#help-design')
 var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
 var recognition = new SpeechRecognition();
 const assistName = "auto"
-recognition.continuous = true;
+recognition.continuous = false;
 recognition.lang = 'fr-FR';
 //============================= addEventListener ==========================
 btnOffSelector.style.display = "none"
@@ -38,9 +38,7 @@ helpDesignSelector.addEventListener ("click", ()=>{
 recognition.onstart = function () {
     console.log(`${assistName} : on`);
 }
-recognition.onend = function () {
-    console.log(`${assistName} : off`);
-}
+
 function readOut(message){
     const speech = new SpeechSynthesisUtterance();
     const allVoices = speechSynthesis.getVoices()
@@ -172,4 +170,11 @@ recognition.onresult = function (event){
 
 
 
+}
+
+recognition.onend = function () {
+    console.log(`${assistName} : off`);
+    btnOnSelector.style.display = "block"
+    btnOffSelector.style.display = "none"
+    recognition.stop()
 }
