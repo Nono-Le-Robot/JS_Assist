@@ -23,6 +23,9 @@
         'https://www.youtube.com/watch?v=Lq2pt_1Y6eQ'
     ]
     var albumList = [
-        'https://www.youtube.com/watch?v=AkjaUuyXReU&list=PLSBWvYm8t6ubEyf30rOEcooU-Ogbh2kC5'
+        'https://www.youtube.com/watch?v=AkjaUuyXReU&list=PLSBWvYm8t6ubEyf30rOEcooU-Ogbh2kC5',
+        'https://www.youtube.com/watch?v=-NPKGYbcuCM&list=PLWBAinm2sYBil_wcfJ3ciek6V4af--LnN',
+        'https://www.youtube.com/watch?v=-NjHCfiMGqo&t=9s',
+        'https://www.youtube.com/watch?v=drqHyuxvx_c'
     ]
 export {radioList, playlistSong, albumList}
