@@ -1,4 +1,4 @@
-import {radioList, playlistSong} from './links.js'
+import {radioList, playlistSong, albumList} from './links.js'
 let openTab
 let randomId
 //============================= Query Selectors ==========================
@@ -50,6 +50,7 @@ function readOut(message){
 recognition.onresult = function (event){
     let current = event.resultIndex
     let transcript = event.results[current][0].transcript
+    console.log(transcript);
     transcript = transcript.toLowerCase(); 
     //============================= Ouvrir Google ==========================
     if(transcript.includes("ouvre google")  ){
@@ -94,7 +95,7 @@ recognition.onresult = function (event){
         randomId = Math.floor(Math.random()*radioList.length)
         openTab = window.open(radioList[randomId]);
         transcript = ""
-        readOut("je mets une radio")
+        readOut("voici une radio au hasard")
     }
     if(transcript.includes("change")  && transcript.includes("radio")){
         let newRandomId = Math.floor(Math.random()*radioList.length)
@@ -120,7 +121,7 @@ recognition.onresult = function (event){
         randomId = Math.floor(Math.random()*playlistSong.length)
         openTab = window.open(playlistSong[randomId]);
         transcript = ""
-        readOut("je mets une playlist")
+        readOut("voici une playlist au hasard")
     }
     if(transcript.includes("change")  && transcript.includes("playlist")){
         let newRandomId = Math.floor(Math.random()*playlistSong.length)
@@ -137,6 +138,33 @@ recognition.onresult = function (event){
         readOut("c'est fait")
     }
     if(transcript.includes("coupe")  && transcript.includes("playlist")){
+        openTab.close()
+        transcript = ""
+        readOut("c'est fait")
+    }
+    //============================= Albums ==========================
+    
+    if(transcript.includes("album") && transcript.includes("mets")){
+        randomId = Math.floor(Math.random()*albumList.length)
+        openTab = window.open(albumList[randomId]);
+        transcript = ""
+        readOut("voici un album au hasard")
+    }
+    if(transcript.includes("change")  && transcript.includes("album")){
+        let newRandomId = Math.floor(Math.random()*albumList.length)
+        if(randomId === newRandomId ){
+            if(newRandomId === 0){
+            }
+            else{
+                newRandomId--
+            }
+        }
+        openTab.close()
+        openTab = window.open(albumList[newRandomId]);
+        transcript = ""
+        readOut("c'est fait")
+    }
+    if(transcript.includes("coupe")  && transcript.includes("album")){
         openTab.close()
         transcript = ""
         readOut("c'est fait")

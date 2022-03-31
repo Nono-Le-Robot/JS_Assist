@@ -22,4 +22,7 @@
         'https://www.youtube.com/watch?v=0sKLmC_m8TE',
         'https://www.youtube.com/watch?v=Lq2pt_1Y6eQ'
     ]
-export {radioList, playlistSong}
+    var albumList = [
+        'https://www.youtube.com/watch?v=AkjaUuyXReU&list=PLSBWvYm8t6ubEyf30rOEcooU-Ogbh2kC5'
+    ]
+export {radioList, playlistSong, albumList}
