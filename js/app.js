@@ -38,7 +38,6 @@ helpDesignSelector.addEventListener ("click", ()=>{
 recognition.onstart = function () {
     console.log(`${assistName} : on`);
 }
-
 function readOut(message){
     const speech = new SpeechSynthesisUtterance();
     const allVoices = speechSynthesis.getVoices()
@@ -143,7 +142,6 @@ recognition.onresult = function (event){
         readOut("c'est fait")
     }
     //============================= Albums ==========================
-    
     if(transcript.includes("album") && transcript.includes("mets")){
         randomId = Math.floor(Math.random()*albumList.length)
         openTab = window.open(albumList[randomId]);
@@ -174,35 +172,15 @@ recognition.onresult = function (event){
         readOut("le bitcoin est actuellement a 47159")
         transcript = ""
     }
+    if(transcript.includes("jouer") && transcript.includes("musique")){
+        readOut("Je connais quelques rythmes de batterie.")
+        window.open("./drumkit.html","_self")
+        transcript = ""
+    }
     if(transcript != ""){
         readOut("Je n'ai pas compris")
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
-
 recognition.onend = function () {
     console.log(`${assistName} : off`);
     btnOnSelector.style.display = "block"
