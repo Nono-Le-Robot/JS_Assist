@@ -90,7 +90,7 @@ recognition.onresult = function (event){
         readOut("voici les resultats")
     }
     //============================= Radio ==========================
-    if(transcript.includes("radio") && transcript.includes("mets")){
+    if(transcript.includes("radio") && transcript.includes("mets") || transcript.includes("radio") && transcript.includes("mais")){
         randomId = Math.floor(Math.random()*radioList.length)
         openTab = window.open(radioList[randomId]);
         transcript = ""
@@ -116,7 +116,7 @@ recognition.onresult = function (event){
         readOut("c'est fait")
     }
     //============================= Playlist ==========================
-    if(transcript.includes("playlist") && transcript.includes("mets")){
+    if(transcript.includes("playlist") && transcript.includes("mets") || transcript.includes("playlist") && transcript.includes("mais")){
         randomId = Math.floor(Math.random()*playlistSong.length)
         openTab = window.open(playlistSong[randomId]);
         transcript = ""
@@ -142,7 +142,7 @@ recognition.onresult = function (event){
         readOut("c'est fait")
     }
     //============================= Albums ==========================
-    if(transcript.includes("album") && transcript.includes("mets")){
+    if(transcript.includes("album") && transcript.includes("mets") || transcript.includes("album") && transcript.includes("mais")){
         randomId = Math.floor(Math.random()*albumList.length)
         openTab = window.open(albumList[randomId]);
         transcript = ""
