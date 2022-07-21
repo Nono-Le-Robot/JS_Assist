@@ -10,7 +10,7 @@ const helpDesignSelector = document.querySelector('#help-design')
 var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
 var recognition = new SpeechRecognition();
 const assistName = "auto"
-recognition.continuous = false;
+recognition.continuous = true;
 recognition.lang = 'fr-FR';
 //============================= addEventListener ==========================
 btnOffSelector.style.display = "none"
