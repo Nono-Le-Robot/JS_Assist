@@ -42,7 +42,6 @@ function readOut(message){
     const speech = new SpeechSynthesisUtterance();
     const allVoices = speechSynthesis.getVoices()
     speech.text = message
-    speech.voice = allVoices[36]
     speech.volume = 0.5
     window.speechSynthesis.speak(speech)
 }
