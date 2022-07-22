@@ -67,7 +67,7 @@ recognition.onresult = function (event){
         input = input.join("").split(" ").join("+");
         window.open(`https://www.google.com/search?q=${input}`)
         transcript = ""  
-        readOut("voici les resultats")
+        readOut("voici les résultats")
     }
     //============================= Ouvrir Youtube ==========================
     if(transcript.includes("ouvre youtube")){
@@ -86,7 +86,7 @@ recognition.onresult = function (event){
         input = input.join("").split(" ").join("+");
         window.open(`https://www.youtube.com/results?search_query=${input}`)
         transcript = ""  
-        readOut("voici les resultats")
+        readOut("voici les résultats")
     }
     //============================= Radio ==========================
     if(transcript.includes("radio") && transcript.includes("mets") || transcript.includes("radio") && transcript.includes("mais")){
@@ -168,7 +168,8 @@ recognition.onresult = function (event){
     }
     //============================= Crypto ==========================
     if(transcript.includes("prix") && transcript.includes("bitcoin")){
-        readOut("le bitcoin est actuellement a 47159")
+        // readOut(`le bitcoin est actuellement a ${btcprice}`)
+        readOut(`le bitcoin est actuellement a 23381`)
         transcript = ""
     }
     if(transcript.includes("jouer") && transcript.includes("musique")){
@@ -176,13 +177,8 @@ recognition.onresult = function (event){
         window.open("./drumkit.html","_self")
         transcript = ""
     }
-    if(transcript != ""){
-        readOut("Je n'ai pas compris")
-    }
 }
 recognition.onend = function () {
-    console.log(`${assistName} : off`);
-    btnOnSelector.style.display = "block"
-    btnOffSelector.style.display = "none"
-    recognition.stop()
+    console.log(`${assistName} : restart after on end event`);
+    recognition.start()
 }

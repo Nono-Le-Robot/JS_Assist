@@ -13,14 +13,10 @@
         'https://www.youtube.com/watch?v=m31P4Bd_Deg&list=PLDa0MsNs3soR2O-4a-0qK67LvrQWNCNg0',
     ]
     var radioList = [
+        "https://www.youtube.com/watch?v=mZHTwjLznVg",
         'https://www.youtube.com/watch?v=3Bu0YAUI4is',
         'https://www.youtube.com/watch?v=05689ErDUdM',
-        'https://www.youtube.com/watch?v=esX7SFtEjHg',
-        'https://www.youtube.com/watch?v=VIK2moz9eTQ',
-        'https://www.youtube.com/watch?v=ws-1a7YTcWI',
-        'https://www.youtube.com/watch?v=SCtRx9FO4g0',
-        'https://www.youtube.com/watch?v=0sKLmC_m8TE',
-        'https://www.youtube.com/watch?v=Lq2pt_1Y6eQ'
+        'https://www.youtube.com/watch?v=ws-1a7YTcWI'
     ]
     var albumList = [
         'https://www.youtube.com/watch?v=AkjaUuyXReU&list=PLSBWvYm8t6ubEyf30rOEcooU-Ogbh2kC5',
