@@ -2,41 +2,40 @@ import {radioList, playlistSong, albumList} from './links.js'
 let openTab
 let randomId
 //============================= Query Selectors ==========================
-const btnOnSelector = document.querySelector("#on")
-const btnOffSelector = document.querySelector("#off")
-const HelpShowSelector = document.querySelector('#help-show')
-const helpDesignSelector = document.querySelector('#help-design')
+const mic = document.querySelector("#mic")
+const commandes  = document.querySelector('#commandes')
 //============================= Speech Recognition ==========================
 var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
 var recognition = new SpeechRecognition();
 const assistName = "auto"
-recognition.continuous = true;
+recognition.continuous = false;
 recognition.lang = 'fr-FR';
 //============================= addEventListener ==========================
-btnOffSelector.style.display = "none"
-btnOnSelector.addEventListener("click", () => {
-    recognition.start()
-    btnOffSelector.style.display = "block"
-    btnOnSelector.style.display = "none"
-})
-btnOffSelector.addEventListener("click", () => {
-    recognition.stop()
-    btnOnSelector.style.display = "block"
-    btnOffSelector.style.display = "none"
-})
-helpDesignSelector.addEventListener ("click", ()=>{
-    if(HelpShowSelector.classList.contains("help-in") == true){
-        HelpShowSelector.classList.remove('help-in');
-        HelpShowSelector.classList.add('help-out');
+
+mic.addEventListener("click", () => {
+    if(mic.classList.contains("fa-microphone-lines") == true){
+        mic.classList.replace('fa-microphone-lines', 'fa-microphone-lines-slash')
+        mic.style.padding = '50px 43px'
+        mic.style.background =  'rgb(226, 101, 84)'
+        recognition.start()
     }
     else{
-        HelpShowSelector.classList.add('help-in');
-        HelpShowSelector.classList.remove('help-out');
+        mic.classList.replace('fa-microphone-lines-slash', 'fa-microphone-lines')
+        mic.style.background =  'rgb(84, 226, 84)'
+        mic.style.padding = '50px 60px'
+        recognition.stop()
     }
+    
+    
+    
+
+
+
 })
+
 //============================= Functions ==========================
 recognition.onstart = function () {
-    console.log(`${assistName} : on`);
+
 }
 function readOut(message){
     const speech = new SpeechSynthesisUtterance();
@@ -45,6 +44,7 @@ function readOut(message){
     speech.volume = 0.5
     window.speechSynthesis.speak(speech)
 }
+
 recognition.onresult = function (event){
     let current = event.resultIndex
     let transcript = event.results[current][0].transcript
@@ -121,6 +121,12 @@ recognition.onresult = function (event){
         transcript = ""
         readOut("voici une playlist au hasard")
     }
+    if(transcript.includes("playlist") && transcript.includes("joue ma")){
+        randomId = Math.floor(Math.random()*playlistSong.length)
+        openTab = window.open('https://www.youtube.com/watch?v=Vcwhe0pY4Bg&list=PLyUNBmcVi2rny26qxF5aNQzm6OKj_Ki6W&index=1');
+        transcript = ""
+        readOut("voici votre playlist")
+    }
     if(transcript.includes("change")  && transcript.includes("playlist")){
         let newRandomId = Math.floor(Math.random()*playlistSong.length)
         if(randomId === newRandomId ){
@@ -169,16 +175,19 @@ recognition.onresult = function (event){
     //============================= Crypto ==========================
     if(transcript.includes("prix") && transcript.includes("bitcoin")){
         // readOut(`le bitcoin est actuellement a ${btcprice}`)
-        readOut(`le bitcoin est actuellement a 23381`)
+        readOut(`le bitcoin est actuellement a 22843`)
         transcript = ""
     }
-    if(transcript.includes("jouer") && transcript.includes("musique")){
+    if(transcript.includes("jouer") && transcript.includes("batterie")){
         readOut("Je connais quelques rythmes de batterie.")
         window.open("./drumkit.html","_self")
         transcript = ""
     }
 }
 recognition.onend = function () {
-    console.log(`${assistName} : restart after on end event`);
-    recognition.start()
+    mic.classList.replace('fa-microphone-lines-slash', 'fa-microphone-lines')
+    mic.style.background =  'rgb(84, 226, 84)'
+    mic.style.padding = '50px 60px'
+    recognition.stop()
+ 
 }

@@ -8,12 +8,9 @@
         'https://www.youtube.com/watch?v=6vYnas6q3Sg&list=PLR32_mgDMQKaXC9xPzz4qH2uWm6a1NNOs',
         'https://www.youtube.com/watch?v=sUYE1RtKl-s&list=PLkqz3S84Tw-SIwPfYMPEZqvv0lqSRM7PK',
         'https://www.youtube.com/watch?v=syNDdIfKbkw&list=PL3oW2tjiIxvQO6yqJEkrP47yYG_pJ7XJU',
-        'https://www.youtube.com/watch?v=ALZHF5UqnU4&list=PLmJWRCZuyUbqrnM4i4UAKMVu66oeCsnBg',
-        'https://www.youtube.com/watch?v=k_g_NM2YxZA',
-        'https://www.youtube.com/watch?v=m31P4Bd_Deg&list=PLDa0MsNs3soR2O-4a-0qK67LvrQWNCNg0',
+        'https://youtube.com/playlist?list=PLyUNBmcVi2rny26qxF5aNQzm6OKj_Ki6W',
     ]
     var radioList = [
-        "https://www.youtube.com/watch?v=mZHTwjLznVg",
         'https://www.youtube.com/watch?v=3Bu0YAUI4is',
         'https://www.youtube.com/watch?v=05689ErDUdM',
         'https://www.youtube.com/watch?v=ws-1a7YTcWI'
@@ -21,7 +18,6 @@
     var albumList = [
         'https://www.youtube.com/watch?v=AkjaUuyXReU&list=PLSBWvYm8t6ubEyf30rOEcooU-Ogbh2kC5',
         'https://www.youtube.com/watch?v=-NPKGYbcuCM&list=PLWBAinm2sYBil_wcfJ3ciek6V4af--LnN',
-        'https://www.youtube.com/watch?v=-NjHCfiMGqo&t=9s',
         'https://www.youtube.com/watch?v=drqHyuxvx_c'
     ]
 export {radioList, playlistSong, albumList}
