@@ -25,12 +25,6 @@ mic.addEventListener("click", () => {
         mic.style.padding = '50px 60px'
         recognition.stop()
     }
-    
-    
-    
-
-
-
 })
 
 //============================= Functions ==========================
