@@ -1,0 +1,252 @@
+@import "./_imports";
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@500&display=swap');
+
+
+
+*{
+    color: white;
+    font-family: 'Unbounded', cursive;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+ body{
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+
+}
+
+#display{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#left-side {
+    background: rgb(0,0,0);
+    border-right: 1px rgba(255, 255, 255, 0.507) solid;
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 2rem;
+
+    h1{
+        font-size: 5rem;
+    }
+
+    #select-device{
+        input{
+            width: 80%;
+            height: 0.5rem;
+            background-color: black;
+            border: none;
+            border-radius: 1.5rem;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+        font-size: 1.6rem;
+        width: 40vw;
+        height: 10vh;
+        background-color: rgba(127, 127, 127, 0.17);
+        border-radius: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 2rem 0rem;
+        gap: 1rem;
+    }
+
+    #start-btn{
+        background-color: rgba(127, 127, 127, 0.17);
+        padding: 1.5rem 3rem;
+        border-radius: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        padding: 1rem 2rem;
+
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+    #cmd-examples{
+        padding: 2rem 0;
+        width: 40vw;
+        height: 40vh;
+        background-color: rgba(127, 127, 127, 0.17);
+        border-radius: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly; 
+        gap: 1rem;
+          
+        p{
+            margin-left: 1rem;
+            margin-right: 1rem;
+            font-size: 25px;
+            text-align: center; 
+        }
+
+        h3{
+            font-size: 2rem;
+            text-align: center;
+
+        }
+        #a-commande-link{
+            margin-top: 2rem;
+            background-color: rgba(255, 255, 255, 0.138);
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 800;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+        
+    }
+    
+}
+
+#right-side{
+    border-left: 1px rgba(255, 255, 255, 0.499) solid;
+    overflow: hidden;
+    width: 50vw;
+    height: 100vh;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    #words-user{
+        background-color: black;
+
+        border: none;
+        overflow: hidden;
+        color: white;
+        position: absolute;
+        text-align: center;
+        top: 97vh;
+        left: 50vw;
+        transform: translateY(-150%);
+        font-size: 2rem;   
+        resize: none;
+        padding: 0rem 2rem;
+        width: 50vw;
+        &:active{
+            border: none;
+            outline: none;
+        }
+        &:focus{
+            border: none;
+            outline: none;
+        }
+    }
+    #words-user::-webkit-scrollbar {
+        background-color: rgb(118, 118, 118);
+        width: 5px;
+      }
+}
+
+@media (max-width: 1530px) {
+
+
+     
+        #display{
+            overflow: visible;
+            flex-wrap: wrap-reverse;
+            height: auto;
+        }
+        
+        body{
+    
+            height: auto;
+            background-color: black;
+            margin: 2rem 0rem;
+        }
+        #left-side{
+            background-color: rgba(255, 0, 0, 0);
+            width: 100vw;
+            #cmd-examples{
+                background-color: rgba(42, 42, 42, 0.885);
+                width: 80vw;
+            }
+            #select-device{
+                background-color: rgba(42, 42, 42, 0.885);
+                width: 80vw;
+            }
+            #start-btn{
+                width: 30vw;
+                height: 7vh;
+            }
+            height: auto;
+        }
+        #right-side{
+            width: 100vw;
+            height: 50vh;
+
+            position: absolute;
+            top: 100vh;
+            transform: translateY(-50%);
+            z-index: -999;
+
+        }
+  }
+
+
+  @media (max-width: 550px) {
+    html,body{
+        height: auto;
+        margin: 1rem 0rem;
+    }
+    #header-left > h1{
+        font-size: 2.5rem;
+    }
+    #left-side{
+        #select-device{
+           font-size: 1rem;
+            input{
+                font-size: 0.8rem;
+            }
+        }
+        
+        #cmd-list{
+            p{
+                font-size:1rem;
+                
+            }
+        }
+        #cmd-examples{
+            #a-commande-link{
+                font-size: 1rem;
+            }
+            
+        }
+
+        #start-btn{
+            font-size: 1rem;
+            padding: 1rem;
+        }
+        height: auto;
+    }
+       
+
+
+}
+
+
+
+
+
